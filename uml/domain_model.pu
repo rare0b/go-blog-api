@@ -1,0 +1,45 @@
+@startuml blog_domain_model
+skinparam PackageStyle rectangle
+
+package 記事集約 {
+    object 記事 {
+        記事ID
+        会員ID
+        タイトル
+        内容
+        タグ
+        削除日
+    }
+}
+
+note top of 記事
+    * タイトル必須
+    * タグ1つ以上必須
+    * 削除日は最初はNULLで、削除されたときに設定される
+end note
+
+package 会員集約 {
+    object 会員 {
+        ユーザID
+        ユーザ名
+        自己紹介
+    }
+    object 認証 {
+        ユーザID
+        メールアドレス
+        パスワード
+    }
+}
+
+note top of 会員
+    * ユーザ名はデフォルトでユーザIDと同じ値が設定され、後で変更可能
+end note
+
+note bottom of 認証
+    * パスワードは6文字以上の英数字記号
+end note
+
+記事 "0..n" -right-> "1" 会員
+会員 "1" -right-> "1" 認証
+
+@enduml

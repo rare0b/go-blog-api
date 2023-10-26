@@ -1,0 +1,36 @@
+@startuml blog_usecase
+left to right direction
+actor 会員 as c
+actor ゲスト as v
+package 記事 {
+usecase "記事を作成する" as articleCreate
+usecase "記事を編集する" as articleEdit
+usecase "記事を削除する" as articleDelete
+usecase "記事をブックマークする" as articleCreateFavorite
+usecase "記事を見る" as articleRead
+usecase "記事一覧を見る" as articleReadAll
+usecase "コメントを書く" as articleCreateComment
+}
+package 会員 {
+usecase "自分の会員情報を見る" as userRead
+usecase "自分の会員情報を変更する" as userUpdate
+}
+package 認証 {
+usecase "ログインする" as authLogin
+usecase "ログアウトする" as authLogout
+}
+
+c --> articleCreate
+c --> articleEdit
+c --> articleDelete
+c --> articleCreateFavorite
+c --> articleRead
+c --> articleReadAll
+c --> articleCreateComment
+c --> userRead
+c --> userUpdate
+c --> authLogin
+c --> authLogout
+v --> articleRead
+v --> articleReadAll
+@enduml
